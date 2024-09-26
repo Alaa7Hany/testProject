@@ -29,5 +29,18 @@ pipeline {
             }
         }
 
+        stage('deploy') {
+            steps {
+                script {
+                    echo 'Deploying application...'
+                    sh '''
+                        docker-compose down  # Stops any existing containers
+                        docker-compose up -d # Deploys new containers
+                    '''
+                    echo 'Application deployed'
+                }
+            }
+        }
+
     }
 }
