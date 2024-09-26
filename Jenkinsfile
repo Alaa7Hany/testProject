@@ -32,8 +32,8 @@ pipeline {
                 script {
                     echo 'Deploying application...'
                     sh '''
-                        docker-compose down  # Stops any existing containers
-                        docker-compose up -d # Deploys new containers
+                        docker-compose down 
+                        docker-compose up -d 
                     '''
                     echo 'Application deployed'
                 }
