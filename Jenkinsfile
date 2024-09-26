@@ -32,8 +32,7 @@ pipeline {
                 script {
                     echo 'Deploying application...'
                     sh '''
-                        docker-compose down 
-                        docker-compose up -d 
+                        docker run -d -p 85:80 3laaharrrr/hubgit:v1
                     '''
                     echo 'Application deployed'
                 }
