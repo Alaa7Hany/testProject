@@ -7,7 +7,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building image......'
-                    sh 'docker build -t 3laaharrrr/hubGit:v1 .'
+                    sh 'docker build -t 3laaharrrr/hubgit:v1 .'
                     echo 'Image built'
                 }
             }
@@ -21,7 +21,7 @@ pipeline {
                         usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                      ]) {
                             sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                            sh 'docker push 3laaharrrr/petclinic:v1'
+                            sh 'docker push 3laaharrrr/hubgit:v1'
                         }
                     echo 'image pushed'    
                 }
