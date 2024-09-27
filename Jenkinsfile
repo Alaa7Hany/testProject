@@ -20,7 +20,7 @@ pipeline {
                         usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                      ]) {
                             sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                            sh 'docker push 3laaharrrr/hubgit:v1'
+                            sh 'docker push 3laaharrrr/testproject:v1'
                         }
                     echo 'image pushed'    
                 }
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     echo 'Deploying application...'
                     sh '''
-                        docker run -d -p 85:80 3laaharrrr/hubgit:v1
+                        docker run -d -p 85:80 3laaharrrr/testproject:v1
                     '''
                     echo 'Application deployed'
                 }
