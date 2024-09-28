@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  application:
+    container_name: testproject-application
+    image: 3laaharrrr/testproject:v3
+    ports:
+      - "8080:80"
+      
