@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building image......'
-                    sh 'docker build -t 3laaharrrr/hubgit:v1 .'
+                    sh 'docker build -t 3laaharrrr/testproject:v1 .'
                     echo 'Image built'
                 }
             }
