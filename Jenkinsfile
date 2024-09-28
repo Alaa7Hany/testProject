@@ -31,9 +31,9 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying application...'
-                    sh '''
-                        docker run -d -p 85:80 3laaharrrr/testproject:v1
-                    '''
+                    // sh '''
+                    //     docker run -d -p 85:80 3laaharrrr/testproject:v1
+                    // '''
                     echo 'Application deployed'
                 }
             }
