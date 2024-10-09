@@ -58,22 +58,11 @@ pipeline {
 
     }
     post {
-        always {
-            emailext (
-                to: "3laahanylol@gmail.com",
-                subject: "Jenkins Build ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
-                body: '''Build Result: ${currentBuild.currentResult}
-                
-                Job URL: ${env.BUILD_URL}
-                ''',
-                attachLog: true
-            )
-        }
         success {
             emailext (
-                to: "3laahanylol@gmail.com",
-                subject: "SUCCESS: Jenkins Build ${currentBuild.fullDisplayName}",
-                body: '''The build was successful!
+                to: "${EMAIL}",
+                subject: "Deployment Successful: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: '''The deployment to the EC2 instance at ${EC2_IP} was successful.
                 
                 Job URL: ${env.BUILD_URL}
                 '''
@@ -81,9 +70,9 @@ pipeline {
         }
         failure {
             emailext (
-                to: "3laahanylol@gmail.com",
-                subject: "FAILURE: Jenkins Build ${currentBuild.fullDisplayName}",
-                body: '''The build has failed.
+                to: "${EMAIL}",
+                subject: "Deployment Failed: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: '''The deployment to the EC2 instance at ${EC2_IP} failed.
                 
                 Job URL: ${env.BUILD_URL}
                 '''
