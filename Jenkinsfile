@@ -36,9 +36,14 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying application...'
-                    def dockerCmd = "docker run -p 8080:80 -d ${APP}"
+                    //def dockerCmd = "docker run -p 8080:80 -d ${APP}"
+
                     sshagent(['ec2-docker-ssh']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.36.37.129 ${dockerCmd}"
+                        "Copping docke-compose.yaml........"
+                        sh """
+                            scp -o StrictHostKeyChecking=no docker-compose.yaml ubuntu@13.36.37.129:/home/ubuntu/
+                        """
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.36.37.129 "
                     }
                     echo 'Application deployed'
                 }
