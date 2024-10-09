@@ -61,20 +61,20 @@ pipeline {
         success {
             emailext (
                 to: "${EMAIL}",
-                subject: "Deployment Successful: Jenkins Build ${currentBuild.fullDisplayName}",
+                subject: "Deployment Successful: Jenkins Build ",
                 body: '''The deployment to the EC2 instance at ${EC2_IP} was successful.
                 
-                Job URL: ${env.BUILD_URL}
+                Job URL: 
                 '''
             )
         }
         failure {
             emailext (
                 to: "${EMAIL}",
-                subject: "Deployment Failed: Jenkins Build ${currentBuild.fullDisplayName}",
+                subject: "Deployment Failed: Jenkins Build ",
                 body: '''The deployment to the EC2 instance at ${EC2_IP} failed.
                 
-                Job URL: ${env.BUILD_URL}
+                Job URL: 
                 '''
             )
         }
