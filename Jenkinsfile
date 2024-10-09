@@ -60,7 +60,7 @@ pipeline {
     post {
         always {
             emailext (
-                to: 'EMAIL',
+                to: "${EMAIL}",
                 subject: "Jenkins Build ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
                 body: '''Build Result: ${currentBuild.currentResult}
                 
@@ -71,7 +71,7 @@ pipeline {
         }
         success {
             emailext (
-                to: 'EMAIL',
+                to: ,
                 subject: "SUCCESS: Jenkins Build ${currentBuild.fullDisplayName}",
                 body: '''The build was successful!
                 
@@ -81,7 +81,7 @@ pipeline {
         }
         failure {
             emailext (
-                to: 'EMAIL',
+                to: "${EMAIL}",
                 subject: "FAILURE: Jenkins Build ${currentBuild.fullDisplayName}",
                 body: '''The build has failed.
                 
