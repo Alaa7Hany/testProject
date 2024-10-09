@@ -4,6 +4,7 @@ pipeline {
     environment {
         APP = '3laaharrrr/testproject'
         VERSION = 'v4'
+        EC2_IP = '15.188.59.142'
     }
     
     stages {
@@ -43,10 +44,10 @@ pipeline {
                     sshagent(['ec2-docker-ssh']) {
                         "Copping docke-compose.yaml........"
                         sh """
-                            scp -o StrictHostKeyChecking=no docker-compose.yaml ubuntu@13.36.37.129:/home/ubuntu/
+                            scp -o StrictHostKeyChecking=no docker-compose.yaml ubuntu@${EC2_IP}:/home/ubuntu/
                         """
                         sh """
-                            ssh -o StrictHostKeyChecking=no ubuntu@13.36.37.129 'cd /home/ubuntu/ && docker-compose down || true && docker-compose pull && docker-compose up -d'
+                            ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} 'cd /home/ubuntu/ && docker-compose down || true && docker-compose pull && docker-compose up -d'
                         """
                     }
                     echo 'Application deployed'
