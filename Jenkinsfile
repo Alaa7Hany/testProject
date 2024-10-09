@@ -43,7 +43,14 @@ pipeline {
                         sh """
                             scp -o StrictHostKeyChecking=no docker-compose.yaml ubuntu@13.36.37.129:/home/ubuntu/
                         """
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@13.36.37.129 "
+                        sh """
+                            ssh -o StrictHostKeyChecking=no ubuntu@13.36.37.129 << EOF
+                            cd /home/ubuntu/
+                            docker-compose down || true   # Stop any running containers
+                            docker-compose pull           # Pull the latest images
+                            docker-compose up -d          # Start the containers in detached mode
+                            EOF
+                        """
                     }
                     echo 'Application deployed'
                 }
