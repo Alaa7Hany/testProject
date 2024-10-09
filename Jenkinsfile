@@ -5,6 +5,7 @@ pipeline {
         APP = '3laaharrrr/testproject'
         VERSION = 'v4'
         EC2_IP = '15.188.59.142'
+        EMAIL = '3laahanylol@gmail.com'
     }
     
     stages {
@@ -56,4 +57,36 @@ pipeline {
         }
 
     }
+    post {
+        always {
+            emailext (
+                to: 'EMAIL',
+                subject: "Jenkins Build ${currentBuild.fullDisplayName} - ${currentBuild.currentResult}",
+                body: '''Build Result: ${currentBuild.currentResult}
+                
+                Job URL: ${env.BUILD_URL}
+                ''',
+                attachLog: true
+            )
+        }
+        success {
+            emailext (
+                to: 'EMAIL',
+                subject: "SUCCESS: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: '''The build was successful!
+                
+                Job URL: ${env.BUILD_URL}
+                '''
+            )
+        }
+        failure {
+            emailext (
+                to: 'EMAIL',
+                subject: "FAILURE: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: '''The build has failed.
+                
+                Job URL: ${env.BUILD_URL}
+                '''
+            )
+        }
 }
