@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        APP = '3laaharrrr/testproject:v3'
+        APP = '3laaharrrr/testproject'
+        VERSION = 'v4'
     }
     
     stages {
@@ -11,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building image......'
-                    sh "docker build -t ${APP} ."
+                    sh "docker build -t ${APP}:${VERSION} -t ${APP}:latest ."
                     echo 'Image built'
                 }
             }
@@ -25,7 +26,8 @@ pipeline {
                         usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')
                      ]) {
                             sh "echo ${PASSWORD} | docker login -u ${USERNAME} --password-stdin"
-                            sh "docker push ${APP}"
+                            sh "docker push ${APP}:${VERSION}"
+                            sh "docker push ${APP}:latest"
                         }
                     echo 'image pushed'    
                 }
