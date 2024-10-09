@@ -5,7 +5,7 @@ pipeline {
         APP = '3laaharrrr/testproject'
         VERSION = 'v4'
         EC2_IP = '15.188.59.142'
-        EMAIL = '3laahanylol@gmail.com'
+        EMAIL = '3laahany946@gmail.com'
     }
     
     stages {
