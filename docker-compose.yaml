@@ -5,5 +5,4 @@ services:
     container_name: testproject-application
     image: 3laaharrrr/testproject:v3
     ports:
-      - "8080:80"
-      
+      - "8060:80"
