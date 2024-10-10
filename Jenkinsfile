@@ -8,7 +8,7 @@ pipeline {
         EMAIL = '3laahany946@gmail.com'
     }
     
-    
+
     stages {
         
         stage('build image') {
@@ -64,21 +64,21 @@ pipeline {
         success {
             emailext (
                 to: "${EMAIL}",
-                subject: "Deployment Successful: Jenkins Build ",
-                body: '''The deployment to the EC2 instance at ${EC2_IP} was successful.
+                subject: "Deployment Successful: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: """The deployment to the EC2 instance at ${EC2_IP} was successful.
                 
-                Job URL: 
-                '''
+                Job URL: ${env.BUILD_URL}
+                """
             )
         }
         failure {
             emailext (
                 to: "${EMAIL}",
-                subject: "Deployment Failed: Jenkins Build ",
-                body: '''The deployment to the EC2 instance at ${EC2_IP} failed.
+                subject: "Deployment Failed: Jenkins Build ${currentBuild.fullDisplayName}",
+                body: """The deployment to the EC2 instance at ${EC2_IP} failed.
                 
-                Job URL: 
-                '''
+                Job URL: ${env.BUILD_URL}
+                """
             )
         }
     }
