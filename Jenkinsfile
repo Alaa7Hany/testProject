@@ -8,6 +8,7 @@ pipeline {
         EMAIL = '3laahany946@gmail.com'
     }
     
+    
     stages {
         
         stage('build image') {
