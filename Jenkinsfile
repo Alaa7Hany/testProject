@@ -12,8 +12,9 @@ pipeline {
         
         stage('build image') {
             steps {
+                mail bcc: '', body: 'Hello, This is an email from jenkins pipeline.', cc: '', from: '', replyTo: '', subject: 'EmailJenkinsPipeline', to: '3laahany946@gmail.com'
                 script {
-                    mail bcc: '', body: 'Hello, This is an email from jenkins pipeline.', cc: '', from: '', replyTo: '', subject:​​ 'EmailJenkinsPipeline', to: '3laahany946@gmail.com'
+                    
                     echo 'Building image......'
                     sh "docker build -t ${APP}:${VERSION} -t ${APP}:latest ."
                     echo 'Image built'
