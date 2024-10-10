@@ -64,6 +64,7 @@ pipeline {
         success {
             emailext (
                 to: "${EMAIL}",
+                from: "jenkins@test.com",
                 subject: "Deployment Successful: Jenkins Build ${currentBuild.fullDisplayName}",
                 body: """The deployment to the EC2 instance at ${EC2_IP} was successful.
                 
@@ -74,6 +75,7 @@ pipeline {
         failure {
             emailext (
                 to: "${EMAIL}",
+                from: "jenkins@test.com",
                 subject: "Deployment Failed: Jenkins Build ${currentBuild.fullDisplayName}",
                 body: """The deployment to the EC2 instance at ${EC2_IP} failed.
                 
